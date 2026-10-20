@@ -1,0 +1,287 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #eef1f5;
+  color: #1f2937;
+}
+
+/* ===========================
+   SIDEBAR (selalu fixed)
+   =========================== */
+.sidebar {
+  width: 230px;
+  background: #0f2147;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+  position: fixed;
+  top: 0; left: 0;
+  height: 100vh;
+  z-index: 200;
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+}
+.sidebar-title {
+  font-size: 17px; font-weight: 700;
+  text-align: center; margin-bottom: 24px; padding: 0 16px;
+}
+.sidebar-profile { text-align: center; margin-bottom: 20px; }
+.avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #6e2c2c;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 8px; font-size: 24px;
+  border: 2px solid rgba(255,255,255,0.15);
+}
+.sidebar-profile .name { font-size: 14px; font-weight: 600; }
+.sidebar-profile .role {
+  font-size: 11px; color: #94a3b8; margin-top: 2px;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.sidebar-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 6px 16px 10px; }
+
+.nav { display: flex; flex-direction: column; gap: 2px; }
+.nav a {
+  display: flex; align-items: center; gap: 10px;
+  color: #cbd5e1; text-decoration: none;
+  padding: 12px 22px; font-size: 14px;
+  transition: background 0.15s;
+  border-left: 3px solid transparent;
+}
+.nav a .icon { font-size: 16px; width: 20px; text-align: center; }
+.nav a:hover  { background: rgba(255,255,255,0.07); color: #fff; }
+.nav a.active { background: rgba(22,163,74,0.15); color: #fff; font-weight: 600; border-left-color: #16a34a; }
+.nav a.logout { color: #f87171; margin-top: 8px; }
+.nav a.logout:hover { background: rgba(248,113,113,0.1); }
+
+/* ===========================
+   MOBILE TOPBAR (hidden desktop)
+   =========================== */
+.admin-topbar-mobile {
+  display: none;
+  background: #0f2147;
+  color: #fff;
+  padding: 14px 18px;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+}
+.admin-topbar-mobile .brand { font-size: 16px; font-weight: 700; }
+.admin-hamburger {
+  background: none; border: none; cursor: pointer;
+  color: #fff; padding: 4px;
+  display: flex; flex-direction: column; gap: 5px;
+}
+.admin-hamburger span {
+  display: block; width: 22px; height: 2px;
+  background: #fff; border-radius: 2px; transition: all 0.3s;
+}
+
+/* ===========================
+   OVERLAY (mobile)
+   =========================== */
+.admin-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 150;
+}
+.admin-overlay.aktif { display: block; }
+
+/* ===========================
+   WRAPPER KONTEN
+   =========================== */
+.desktop-wrapper { margin-left: 230px; min-height: 100vh; }
+.main { padding: 26px 32px; }
+
+/* ===========================
+   TOPBAR HALAMAN
+   =========================== */
+.topbar {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 22px;
+  flex-wrap: wrap; gap: 12px;
+}
+.topbar h1 { font-size: 22px; font-weight: 700; }
+.topbar .subtitle { font-size: 13px; color: #6b7280; margin-top: 2px; }
+.machine-status {
+  display: flex; align-items: center; gap: 8px;
+  background: #fff; border-radius: 8px; padding: 8px 14px;
+  font-size: 13px; font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  white-space: nowrap;
+}
+.dot { width: 9px; height: 9px; border-radius: 50%; background: #16a34a; }
+.dot.offline { background: #dc2626; }
+
+/* ===========================
+   CARDS RINGKASAN
+   =========================== */
+.cards { display: flex; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
+.card {
+  flex: 1; min-width: 160px; border-radius: 12px; padding: 16px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.card.users  { background: #e4ecfb; }
+.card.trx    { background: #e3f6e8; }
+.card.waste  { background: #fdf0e0; }
+.card-label  { font-size: 12.5px; color: #4b5563; margin-bottom: 6px; }
+.card-value  { font-size: 26px; font-weight: 700; display: flex; align-items: baseline; gap: 4px; }
+.card-value span.unit { font-size: 12px; font-weight: 400; color: #6b7280; }
+.card-icon   { font-size: 26px; }
+.card.users .card-icon { color: #2563eb; }
+.card.trx   .card-icon { color: #16a34a; }
+.card.waste .card-icon { color: #d97706; }
+
+/* ===========================
+   ROW & PANEL
+   =========================== */
+.row { display: flex; gap: 18px; margin-bottom: 22px; flex-wrap: wrap; }
+.panel {
+  background: #fff; border-radius: 12px; padding: 20px 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06); margin-bottom: 22px;
+}
+.panel h2    { font-size: 16px; font-weight: 700; margin-bottom: 14px; }
+.panel.half  { flex: 1; min-width: 280px; }
+.panel.full  { flex: 1; }
+
+/* ===========================
+   TABEL
+   =========================== */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 480px; }
+thead th {
+  text-align: left; color: #6b7280; font-weight: 600;
+  padding: 8px 10px; border-bottom: 1px solid #e5e7eb; white-space: nowrap;
+}
+tbody td { padding: 9px 10px; border-bottom: 1px solid #f1f2f4; }
+tbody tr:last-child td { border-bottom: none; }
+.empty-msg { text-align: center; color: #9ca3af; padding: 20px 0; }
+.jenis-pet { color: #16a34a; font-weight: 600; }
+.jenis-pp  { color: #ea580c; font-weight: 600; }
+.poin-plus { color: #16a34a; font-weight: 600; }
+
+/* ===========================
+   BADGE
+   =========================== */
+.badge {
+  display: inline-block; padding: 3px 10px;
+  border-radius: 6px; font-size: 11.5px; font-weight: 600;
+}
+.badge.online  { background: #dcfce7; color: #16a34a; }
+.badge.offline { background: #fee2e2; color: #dc2626; }
+.badge.admin   { background: #e4ecfb; color: #2563eb; }
+.badge.user    { background: #e3f6e8; color: #16a34a; }
+
+/* ===========================
+   BAR CHART CSS
+   =========================== */
+.bar-chart { display: flex; align-items: flex-end; gap: 22px; height: 150px; }
+.bar-group { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; }
+.bar-track { width: 100%; max-width: 48px; height: 120px; background: #f1f2f4; border-radius: 6px 6px 0 0; display: flex; align-items: flex-end; }
+.bar-fill  { width: 100%; border-radius: 6px 6px 0 0; transition: height 0.4s; }
+.bar-fill.pet  { background: #16a34a; }
+.bar-fill.pp   { background: #ea580c; }
+.bar-label { font-size: 12px; color: #4b5563; font-weight: 600; }
+.bar-value { font-size: 11px; color: #6b7280; }
+
+/* ===========================
+   FORM & ACTIONS
+   =========================== */
+.actions-row {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px;
+}
+.search-input {
+  border: 1px solid #e5e7eb; border-radius: 8px; padding: 8px 12px;
+  font-size: 13px; width: 220px; outline: none; max-width: 100%;
+}
+.search-input:focus { border-color: #0f2147; }
+
+form.tambah label { display: block; font-size: 13px; margin-bottom: 4px; color: #4b5563; font-weight: 600; }
+form.tambah input, form.tambah select {
+  width: 100%; padding: 9px 12px; margin-bottom: 14px;
+  border: 1px solid #e5e7eb; border-radius: 8px;
+  box-sizing: border-box; font-size: 13.5px; outline: none;
+}
+form.tambah input:focus, form.tambah select:focus { border-color: #0f2147; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+.btn-submit {
+  background: #0f2147; color: #fff; border: none;
+  padding: 10px 22px; border-radius: 8px;
+  cursor: pointer; font-size: 14px; font-weight: 600;
+  transition: background 0.2s;
+}
+.btn-submit:hover { background: #16a34a; }
+
+.btn-small {
+  border: none; border-radius: 6px; padding: 5px 10px;
+  font-size: 12px; font-weight: 600; cursor: pointer;
+  text-decoration: none; display: inline-block;
+}
+.btn-edit   { background: #e4ecfb; color: #2563eb; margin-right: 4px; }
+.btn-delete { background: #fee2e2; color: #dc2626; }
+
+/* ===========================
+   ALERT & INFO
+   =========================== */
+.alert { padding: 10px 14px; border-radius: 8px; margin-bottom: 16px; font-size: 13.5px; }
+.alert.sukses { background: #e3f6e8; color: #16a34a; }
+.alert.error  { background: #fee2e2; color: #dc2626; }
+.info { font-size: 12px; color: #9ca3af; margin-top: -6px; margin-bottom: 14px; }
+
+/* ==================================================
+   RESPONSIVE MOBILE (≤ 768px)
+   ================================================== */
+@media (max-width: 768px) {
+  /* Sidebar tersembunyi off-screen */
+  .sidebar {
+    transform: translateX(-100%);
+    width: 260px;
+  }
+  .sidebar.terbuka { transform: translateX(0); }
+
+  /* Topbar mobile muncul */
+  .admin-topbar-mobile { display: flex; }
+
+  /* Wrapper tidak geser */
+  .desktop-wrapper { margin-left: 0; }
+  .main { padding: 16px 14px; }
+
+  /* Cards jadi 2 kolom di mobile, 1 kolom kalau layar sangat kecil */
+  .cards { gap: 10px; }
+  .card  { min-width: calc(50% - 8px); flex: 0 0 calc(50% - 8px); padding: 14px 14px; }
+  .card-value { font-size: 22px; }
+  .card-icon  { font-size: 22px; }
+
+  /* Row panel jadi kolom */
+  .row { flex-direction: column; gap: 14px; }
+  .panel.half { min-width: unset; }
+
+  /* Grid form jadi 1 kolom */
+  .grid2, .grid3 { grid-template-columns: 1fr; }
+
+  /* Topbar halaman */
+  .topbar { flex-direction: column; align-items: flex-start; }
+  .topbar h1 { font-size: 18px; }
+  .machine-status { font-size: 12px; }
+
+  /* Tombol submit full width */
+  .btn-submit { width: 100%; text-align: center; }
+}
+
+/* Layar sangat kecil (≤ 400px): cards jadi 1 kolom */
+@media (max-width: 400px) {
+  .card { min-width: 100%; flex: 0 0 100%; }
+}
+
+/* TABLET (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .sidebar { width: 200px; }
+  .desktop-wrapper { margin-left: 200px; }
+  .main { padding: 20px 22px; }
+  .grid3 { grid-template-columns: 1fr 1fr; }
+}
